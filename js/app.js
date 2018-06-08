@@ -102,7 +102,7 @@ Player.prototype.checkCollisions = function() {
             }
         this.reset();
     }
-
+    }
     }
 };
 
