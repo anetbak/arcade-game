@@ -8,8 +8,8 @@ let Enemy = function(x, y, speed) {
     //speed
     this.speed = speed;
     //size
-    this.width = 50;
-    this.height = 20;
+    this.width = 70;
+    this.height = 40;
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
     this.sprite = 'images/enemy-bug.png';
@@ -40,7 +40,7 @@ Enemy.prototype.render = function(x, y) {
 let Player = function(x, y) {
     this.x = x;
     this.y = y;
-    this.sprite = 'images/char-horn-girl.png';
+    this.sprite = 'images/char-princess-girl.png';
     this.width = 75;
     this.height = 40;
     this.score = 0;
@@ -60,7 +60,7 @@ Player.prototype.update = function() {
             this.score++;
             document.getElementsByClassName('score')[0].innerHTML = this.score;
             if (this.score >= 10){
-                WinGame();
+                WonGame();
             }
             this.reset();
         } else {
@@ -98,28 +98,28 @@ Player.prototype.checkCollisions = function() {
             this.lives --;
             document.getElementsByClassName('lives')[0].innerHTML = this.lives;
             if (this.lives === 0){
-                LoseGame();
+                LostGame();
             }
         this.reset();
     }
-    }
+
     }
 };
 
 //Win Game
-WinGame = function (){
+WonGame = function (){
     let body= document.getElementsByClassName('body')[0];
     body.innerHTML = "";
-    let para = document.createElement("h6");               // Create a <p> element
-    let text = document.createTextNode("You Won!!!");      // Create a text node
-    para.appendChild(text);                                // Append the text to <p>
-    body.appendChild(para);                                // Append <p> to body
-    var but = document.createElement("button");
-    but.value="replay";
+    let para = document.createElement("h6");
+    let text = document.createTextNode("You Won!");
+    para.appendChild(text);
+    body.appendChild(para);
+    var button = document.createElement("button");
+    button.value="replay";
     let replay = document.createTextNode("Play Again");
-    but.appendChild(replay);
-    but.setAttribute("onclick","reload()");
-    but.onclick = reload;
+    button.appendChild(replay);
+    button.setAttribute("onclick","reload()");
+    button.onclick = reload;
     body.appendChild(but);
 }
 
@@ -127,19 +127,19 @@ reload = function  (){
     location.reload();
 }
 
-LoseGame = function(){
+LostGame = function(){
     let body= document.getElementsByClassName('body')[0];
     body.innerHTML = "";
-    let para = document.createElement("h6");               // Create a <p> element
-    let text = document.createTextNode("You Lost!!!");      // Create a text node
-    para.appendChild(text);                                // Append the text to <p>
-    body.appendChild(para);                                // Append <p> to body
-    var but = document.createElement("button");
-    but.value="replay";
+    let para = document.createElement("h6");
+    let text = document.createTextNode("You Lost!");
+    para.appendChild(text);
+    body.appendChild(para);
+    var button = document.createElement("button");
+    button.value="replay";
     let replay = document.createTextNode("Play Again");
-    but.appendChild(replay);
-    but.setAttribute("onclick","reload()");
-    but.onclick = reload;
+    button.appendChild(replay);
+    button.setAttribute("onclick","reload()");
+    button.onclick = reload;
     body.appendChild(but);
 }
 
